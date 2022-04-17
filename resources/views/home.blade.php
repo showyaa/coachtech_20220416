@@ -15,7 +15,7 @@
     <h1><a href="/home">SalesManagement</a></h1>
     <input type="button" id="openBtn" value="+" class="openBtn">
     <input type="button" class="setting" value="設定">
-    <input type="button" value="ログアウト">
+    <a href="{{route('logout')}}"><input type="button" value="ログアウト"></a>
   </header>
   <main>
     <div id="modal" class="modal">
@@ -50,7 +50,23 @@
               <tr>
                 <th>セールスステータス</th>
                 <td>
-                  <input type="text" name="status">
+                  <select name="status">
+                    <option value="{{$statuses->status1}}">
+                      {{$statuses->status1}}
+                    </option>
+                    <option value="{{$statuses->status2}}">
+                      {{$statuses->status2}}
+                    </option>
+                    <option value="{{$statuses->status3}}">
+                      {{$status->status3}}
+                    </option>
+                    <option value="{{$statuses->status4}}">
+                      {{$statuses->status4}}
+                    </option>
+                    <option value="{{$statuses->status5}}">
+                      {{$statuses->status5}}
+                    </option>
+                  </select>
                 </td>
               </tr>
             </table>

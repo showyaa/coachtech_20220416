@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\LogOutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManagementController;
+use Illuminate\Auth\Events\Logout;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +22,20 @@ Route::post('/update', [ManagementController::class, 'update']);
 Route::post('/delete', [ManagementController::class, 'delete']);
 
 
+Route::get('/home', [ManagementController::class, 'status']);
+
+
+Route::get('/logout', [LogOutController::class, 'logout']);
+
+
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/home', function () {
     return view('home');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('home');
 
 require __DIR__.'/auth.php';
