@@ -24,6 +24,7 @@
       <div class="modal__content">
         <div class="modal__content-inner">
           <form action="/create" class="form_create" method="post">
+            @csrf
             <table>
               <tr>
                 <th>会社名</th>
@@ -52,7 +53,7 @@
               <tr>
                 <th>セールスステータス</th>
                 <td>
-                  <select name="status">
+                  <select name="status" class="status">
                     @foreach ($statuses as $status)
                     <option value="{{$status->status}}">
                       {{$status->status}}
@@ -62,7 +63,7 @@
                 </td>
               </tr>
             </table>
-            <input type="button" class="create_btn" id="createBtn" value="追加">
+            <input type="submit" class="create_btn" id="createBtn" value="追加">
           </form>
         </div>
       </div>

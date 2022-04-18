@@ -17,7 +17,7 @@ use Illuminate\Auth\Events\Logout;
 */
 
 Route::get('/home', [ManagementController::class, 'index']);
-Route::post('/create', [ManagementController::class, 'create']);
+Route::post('/create', [ManagementController::class, 'create'])->name('customer.create');
 Route::post('/update', [ManagementController::class, 'update']);
 Route::post('/delete', [ManagementController::class, 'delete']);
 
@@ -32,8 +32,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth'])->name('home');
+
 
 require __DIR__.'/auth.php';
