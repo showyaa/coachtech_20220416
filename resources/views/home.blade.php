@@ -13,15 +13,17 @@
 <body>
   <header class="header">
     <h1><a href="/home">SalesManagement</a></h1>
-    <input type="button" id="openBtn" value="+" class="openBtn">
-    <input type="button" class="setting" value="設定">
-    <a href="{{route('logout')}}"><input type="button" value="ログアウト"></a>
+    <div class="header_btn">
+      <input type="button" id="openBtn" value="+" class="openBtn">
+      <input type="button" class="setting" value="設定">
+      <a href="{{route('logout')}}"><input type="button" class="logout" value="ログアウト"></a>
+    </div>
   </header>
   <main>
     <div id="modal" class="modal">
       <div class="modal__content">
         <div class="modal__content-inner">
-          <form action="/create" method="post">
+          <form action="/create" class="form_create" method="post">
             <table>
               <tr>
                 <th>会社名</th>
@@ -51,26 +53,16 @@
                 <th>セールスステータス</th>
                 <td>
                   <select name="status">
-                    <option value="{{$statuses->status1}}">
-                      {{$statuses->status1}}
+                    @foreach ($statuses as $status)
+                    <option value="{{$status->status}}">
+                      {{$status->status}}
                     </option>
-                    <option value="{{$statuses->status2}}">
-                      {{$statuses->status2}}
-                    </option>
-                    <option value="{{$statuses->status3}}">
-                      {{$status->status3}}
-                    </option>
-                    <option value="{{$statuses->status4}}">
-                      {{$statuses->status4}}
-                    </option>
-                    <option value="{{$statuses->status5}}">
-                      {{$statuses->status5}}
-                    </option>
+                    @endforeach
                   </select>
                 </td>
               </tr>
             </table>
-            <input type="button" id="createBtn" value="追加">
+            <input type="button" class="create_btn" id="createBtn" value="追加">
           </form>
         </div>
       </div>

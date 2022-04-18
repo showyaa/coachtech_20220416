@@ -21,9 +21,7 @@ Route::post('/create', [ManagementController::class, 'create']);
 Route::post('/update', [ManagementController::class, 'update']);
 Route::post('/delete', [ManagementController::class, 'delete']);
 
-
 Route::get('/home', [ManagementController::class, 'status']);
-
 
 Route::get('/logout', [LogOutController::class, 'logout']);
 
