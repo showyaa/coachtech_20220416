@@ -1,9 +1,19 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <h1>
+                <a href="/">SalesManagement</a>
+            </h1>
+            <p>ログイン</p>
+            <style>
+                h1 {
+                    font-size: 50px;
+                }
+                p {
+                    text-align: center;
+                    font-size: 20px;
+                }
+            </style>
         </x-slot>
 
         <!-- Session Status -->
@@ -26,10 +36,7 @@
             <div class="mt-4">
                 <x-label for="password" :value="__('パスワード')" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
             <!-- Remember Me -->
@@ -42,9 +49,9 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('パスワードをお忘れの場合') }}
-                    </a>
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    {{ __('パスワードをお忘れの場合') }}
+                </a>
                 @endif
 
                 <x-button class="ml-3">

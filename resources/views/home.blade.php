@@ -26,24 +26,44 @@
           <form action="/create" class="form_create" method="post">
             @csrf
             <table>
+              @error('company')
+              <tr>
+                <td>{{$message}}</td>
+              </tr>
+              @enderror
               <tr>
                 <th>会社名</th>
                 <td>
                   <input type="text" name="company">
                 </td>
               </tr>
+              @error('name')
+              <tr>
+                <td>{{$message}}</td>
+              </tr>
+              @enderror
               <tr>
                 <th>代表者名</th>
                 <td>
                   <input type="text" name="name">
                 </td>
               </tr>
+              @error('tel')
+              <tr>
+                <td>{{$message}}</td>
+              </tr>
+              @enderror
               <tr>
                 <th>電話番号</th>
                 <td>
                   <input type="text" name="tel">
                 </td>
               </tr>
+              @error('email')
+              <tr>
+                <td>{{$message}}</td>
+              </tr>
+              @enderror
               <tr>
                 <th>メールアドレス</th>
                 <td>

@@ -11,7 +11,10 @@ class SalesManagementRequest extends FormRequest
      *
      * @return bool
      */
-
+    public function authorize()
+    {
+        return true;
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -23,8 +26,8 @@ class SalesManagementRequest extends FormRequest
         return [
             'company' => 'required|max:30',
             'name' => 'max:20',
-            'tel' => 'numeric|max:11',
-            'email' => 'email',
+            'tel' => 'numeric|nullable',
+            'email' => 'email|nullable',
         ];
     }
     public function messages()

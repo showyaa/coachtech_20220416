@@ -1,9 +1,17 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <h1><a href="/">SalesManagement</a></h1>
+            <p>新規登録</p>
+            <style>
+                h1 {
+                    font-size: 50px;
+                }
+                p {
+                    text-align: center;
+                    font-size: 20px;
+                }
+            </style>
         </x-slot>
 
         <!-- Validation Errors -->
