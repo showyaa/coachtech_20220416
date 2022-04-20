@@ -16,12 +16,13 @@ use Illuminate\Auth\Events\Logout;
 |
 */
 
+Route::get('/home', [ManagementController::class, 'customer']);
 Route::get('/home', [ManagementController::class, 'index']);
 Route::post('/create', [ManagementController::class, 'create'])->name('customer.create');
 Route::post('/update', [ManagementController::class, 'update']);
 Route::post('/delete', [ManagementController::class, 'delete']);
 
-Route::get('/home', [ManagementController::class, 'status']);
+
 
 Route::get('/logout', [LogOutController::class, 'logout']);
 

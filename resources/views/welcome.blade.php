@@ -410,7 +410,7 @@
         <div class="login_register">
             <h1>SalesManagement</h1>
             @auth
-            <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">SalesManagement</a>
+            <a href="{{ url('/home') }}" class="home_btn">ホーム画面へ</a>
             @else
             <div class="login_btn">
                 <a href="{{ route('login') }}">ログイン</a>
@@ -464,9 +464,11 @@
                 padding: 20px;
                 font-size: 20px;
             }
-
             .login_register a:first-child {
                 margin-bottom: 30px;
+            }
+            .login_register .home_btn {
+                margin-top: 10%;
             }
 
             .login_register a:hover {

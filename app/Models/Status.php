@@ -9,6 +9,10 @@ class Status extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'status'
+    ];
+
     public function costomers()
     {
         return $this->hasMany('App\Models\Customer');

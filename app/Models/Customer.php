@@ -8,12 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     protected $fillable = [
-        'statuse_id',
+        'status_id',
         'company',
         'name',
         'tel',
         'email',
     ];
     
+    public function getCompany ()
+    {
+        $txt =$this->company;
+        return $txt;
+    }
     use HasFactory;
 }
