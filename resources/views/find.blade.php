@@ -111,17 +111,18 @@
       <!-- ステータス1 -->
       <div class="box1_table">
         <table class="tables_table">
-          @foreach($companies1 as $company1)
+          @if(@isset($items1))
+          @foreach($items1 as $item)
           <tr>
             <td class="tables_maintd">
-              <p id="open_update_{{$company1->id}}" class="open_update">
-                {{$company1->company}}
+              <p id="open_update_{{$item->id}}" class="open_update">
+                {{$item->company}}
               </p>
-              <div id="modal2_{{$company1->id}}" class="modal2">
+              <div id="modal2_{{$item->id}}" class="modal2">
                 <div class="modal__content2">
                   <div class="modal__content-inner2">
-                    <input type="button" class="update_close" id="update_close_btn_{{$company1->id}}" value="×">
-                    <form action="/update?id={{$company1->id}}" class="form_update" method="post">
+                    <input type="button" class="update_close" id="update_close_btn_{{$item->id}}" value="×">
+                    <form action="/update?id={{$item->id}}" class="form_update" method="post">
                       @csrf
                       <table>
                         @error('company')
@@ -133,7 +134,7 @@
                         <tr>
                           <th>会社名<span class="required">*</span></th>
                           <td>
-                            <input type="text" name="company" value="{{$company1->company}}">
+                            <input type="text" name="company" value="{{$item->company}}">
                           </td>
                         </tr>
                         @error('name')
@@ -145,7 +146,7 @@
                         <tr>
                           <th>代表者名</th>
                           <td>
-                            <input type="text" name="name" value="{{$company1->name}}">
+                            <input type="text" name="name" value="{{$item->name}}">
                           </td>
                         </tr>
                         @error('tel')
@@ -157,7 +158,7 @@
                         <tr>
                           <th>電話番号</th>
                           <td>
-                            <input type="text" name="tel" value="{{$company1->tel}}">
+                            <input type="text" name="tel" value="{{$item->tel}}">
                           </td>
                         </tr>
                         @error('email')
@@ -169,7 +170,7 @@
                         <tr>
                           <th>メールアドレス</th>
                           <td>
-                            <input type="text" name="email" value="{{$company1->email}}">
+                            <input type="text" name="email" value="{{$item->email}}">
                           </td>
                         </tr>
                         <tr>
@@ -189,7 +190,7 @@
                           <input type="submit" class="update_btn" id="updateBtn" value="更新">
                     </form>
                     <br>
-                        <form action="/delete?id={{$company1->id}}" method="post" class="form_delete">
+                        <form action="/delete?id={{$item->id}}" method="post" class="form_delete">
                           @csrf
                           <input type="submit" class="delete_btn" value="削除">
                         </form>
@@ -200,38 +201,40 @@
             </td>
           </tr>
           <script>
-            const open_update_{{$company1->id}} = document.getElementById('open_update_{{$company1->id}}');
-            const close_update_{{$company1->id}} = document.getElementById('update_close_btn_{{$company1->id}}');
-            const modal2_{{$company1->id}} = document.getElementById('modal2_{{$company1->id}}');
-            open_update_{{$company1->id}}.addEventListener('click', () => {
-              modal2_{{$company1->id}}.style.display = 'block';
+            const open_update_{{$item->id}} = document.getElementById('open_update_{{$item->id}}');
+            const close_update_{{$item->id}} = document.getElementById('update_close_btn_{{$item->id}}');
+            const modal2_{{$item->id}} = document.getElementById('modal2_{{$item->id}}');
+            open_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'block';
             })
-            close_update_{{$company1->id}}.addEventListener('click', () => {
-              modal2_{{$company1->id}}.style.display = 'none';
+            close_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'none';
             })
             window.addEventListener('click', (e) => {
-              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$company1->id}}") {
-                modal2_{{$company1->id}}.style.display = 'none';
+              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$item->id}}") {
+                modal2_{{$item->id}}.style.display = 'none';
               }
             });
           </script>
           @endforeach
+          @endif
         </table>
       </div>
       <!-- ステータス2 -->
       <div class="box2_table">
         <table class="tables_table">
-          @foreach($companies2 as $company2)
+          @if(@isset($items2))
+          @foreach($items2 as $item)
           <tr>
             <td class="tables_maintd">
-              <p id="open_update_{{$company2->id}}" class="open_update">
-                {{$company2->company}}
+              <p id="open_update_{{$item->id}}" class="open_update">
+                {{$item->company}}
               </p>
-              <div id="modal2_{{$company2->id}}" class="modal2">
+              <div id="modal2_{{$item->id}}" class="modal2">
                 <div class="modal__content2">
                   <div class="modal__content-inner2">
-                    <input type="button" class="update_close" id="update_close_btn_{{$company2->id}}" value="×">
-                    <form action="/update?id={{$company2->id}}" class="form_update" method="post">
+                    <input type="button" class="update_close" id="update_close_btn_{{$item->id}}" value="×">
+                    <form action="/update?id={{$item->id}}" class="form_update" method="post">
                       @csrf
                       <table>
                         @error('company')
@@ -243,7 +246,7 @@
                         <tr>
                           <th>会社名<span class="required">*</span></th>
                           <td>
-                            <input type="text" name="company" value="{{$company2->company}}">
+                            <input type="text" name="company" value="{{$item->company}}">
                           </td>
                         </tr>
                         @error('name')
@@ -255,7 +258,7 @@
                         <tr>
                           <th>代表者名</th>
                           <td>
-                            <input type="text" name="name" value="{{$company2->name}}">
+                            <input type="text" name="name" value="{{$item->name}}">
                           </td>
                         </tr>
                         @error('tel')
@@ -267,7 +270,7 @@
                         <tr>
                           <th>電話番号</th>
                           <td>
-                            <input type="text" name="tel" value="{{$company2->tel}}">
+                            <input type="text" name="tel" value="{{$item->tel}}">
                           </td>
                         </tr>
                         @error('email')
@@ -279,7 +282,7 @@
                         <tr>
                           <th>メールアドレス</th>
                           <td>
-                            <input type="text" name="email" value="{{$company2->email}}">
+                            <input type="text" name="email" value="{{$item->email}}">
                           </td>
                         </tr>
                         <tr>
@@ -309,7 +312,7 @@
                           <input type="submit" class="update_btn" id="updateBtn" value="更新">
                     </form>
                     <br>
-                        <form action="/delete?id={{$company2->id}}" method="post" class="form_delete">
+                        <form action="/delete?id={{$item->id}}" method="post" class="form_delete">
                           @csrf
                           <input type="submit" class="delete_btn" value="削除">
                         </form>
@@ -320,38 +323,40 @@
             </td>
           </tr>
           <script>
-            const open_update_{{$company2->id}} = document.getElementById('open_update_{{$company2->id}}');
-            const close_update_{{$company2->id}} = document.getElementById('update_close_btn_{{$company2->id}}');
-            const modal2_{{$company2->id}} = document.getElementById('modal2_{{$company2->id}}');
-            open_update_{{$company2->id}}.addEventListener('click', () => {
-              modal2_{{$company2->id}}.style.display = 'block';
+            const open_update_{{$item->id}} = document.getElementById('open_update_{{$item->id}}');
+            const close_update_{{$item->id}} = document.getElementById('update_close_btn_{{$item->id}}');
+            const modal2_{{$item->id}} = document.getElementById('modal2_{{$item->id}}');
+            open_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'block';
             })
-            close_update_{{$company2->id}}.addEventListener('click', () => {
-              modal2_{{$company2->id}}.style.display = 'none';
+            close_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'none';
             })
             window.addEventListener('click', (e) => {
-              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$company2->id}}") {
-                modal2_{{$company2->id}}.style.display = 'none';
+              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$item->id}}") {
+                modal2_{{$item->id}}.style.display = 'none';
               }
             });
           </script>
           @endforeach
+          @endif
         </table>
       </div>
       <!-- ステータス3 -->
       <div class="box3_table">
         <table class="tables_table">
-          @foreach($companies3 as $company3)
+          @if(@isset($items3))
+          @foreach($items3 as $item)
           <tr>
             <td class="tables_maintd">
-              <p id="open_update_{{$company3->id}}" class="open_update">
-                {{$company3->company}}
+              <p id="open_update_{{$item->id}}" class="open_update">
+                {{$item->company}}
               </p>
-              <div id="modal2_{{$company3->id}}" class="modal2">
+              <div id="modal2_{{$item->id}}" class="modal2">
                 <div class="modal__content2">
                   <div class="modal__content-inner2">
-                    <input type="button" class="update_close" id="update_close_btn_{{$company3->id}}" value="×">
-                    <form action="/update?id={{$company3->id}}" class="form_update" method="post">
+                    <input type="button" class="update_close" id="update_close_btn_{{$item->id}}" value="×">
+                    <form action="/update?id={{$item->id}}" class="form_update" method="post">
                       @csrf
                       <table>
                         @error('company')
@@ -363,7 +368,7 @@
                         <tr>
                           <th>会社名<span class="required">*</span></th>
                           <td>
-                            <input type="text" name="company" value="{{$company3->company}}">
+                            <input type="text" name="company" value="{{$item->company}}">
                           </td>
                         </tr>
                         @error('name')
@@ -375,7 +380,7 @@
                         <tr>
                           <th>代表者名</th>
                           <td>
-                            <input type="text" name="name" value="{{$company3->name}}">
+                            <input type="text" name="name" value="{{$item->name}}">
                           </td>
                         </tr>
                         @error('tel')
@@ -387,7 +392,7 @@
                         <tr>
                           <th>電話番号</th>
                           <td>
-                            <input type="text" name="tel" value="{{$company3->tel}}">
+                            <input type="text" name="tel" value="{{$item->tel}}">
                           </td>
                         </tr>
                         @error('email')
@@ -399,7 +404,7 @@
                         <tr>
                           <th>メールアドレス</th>
                           <td>
-                            <input type="text" name="email" value="{{$company3->email}}">
+                            <input type="text" name="email" value="{{$item->email}}">
                           </td>
                         </tr>
                         <tr>
@@ -429,7 +434,7 @@
                           <input type="submit" class="update_btn" id="updateBtn" value="更新">
                     </form>
                     <br>
-                        <form action="/delete?id={{$company3->id}}" method="post" class="form_delete">
+                        <form action="/delete?id={{$item->id}}" method="post" class="form_delete">
                           @csrf
                           <input type="submit" class="delete_btn" value="削除">
                         </form>
@@ -440,38 +445,40 @@
             </td>
           </tr>
           <script>
-            const open_update_{{$company3->id}} = document.getElementById('open_update_{{$company3->id}}');
-            const close_update_{{$company3->id}} = document.getElementById('update_close_btn_{{$company3->id}}');
-            const modal2_{{$company3->id}} = document.getElementById('modal2_{{$company3->id}}');
-            open_update_{{$company3->id}}.addEventListener('click', () => {
-              modal2_{{$company3->id}}.style.display = 'block';
+            const open_update_{{$item->id}} = document.getElementById('open_update_{{$item->id}}');
+            const close_update_{{$item->id}} = document.getElementById('update_close_btn_{{$item->id}}');
+            const modal2_{{$item->id}} = document.getElementById('modal2_{{$item->id}}');
+            open_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'block';
             })
-            close_update_{{$company3->id}}.addEventListener('click', () => {
-              modal2_{{$company3->id}}.style.display = 'none';
+            close_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'none';
             })
             window.addEventListener('click', (e) => {
-              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$company3->id}}") {
-                modal2_{{$company3->id}}.style.display = 'none';
+              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$item->id}}") {
+                modal2_{{$item->id}}.style.display = 'none';
               }
             });
           </script>
           @endforeach
+          @endif
         </table>
       </div>
       <!-- ステータス4 -->
       <div class="box4_table">
         <table class="tables_table">
-          @foreach($companies4 as $company4)
+          @if(@isset($items4))
+          @foreach($items4 as $item)
           <tr>
             <td class="tables_maintd">
-              <p id="open_update_{{$company4->id}}" class="open_update">
-                {{$company4->company}}
+              <p id="open_update_{{$item->id}}" class="open_update">
+                {{$item->company}}
               </p>
-              <div id="modal2_{{$company4->id}}" class="modal2">
+              <div id="modal2_{{$item->id}}" class="modal2">
                 <div class="modal__content2">
                   <div class="modal__content-inner2">
-                    <input type="button" class="update_close" id="update_close_btn_{{$company4->id}}" value="×">
-                    <form action="/update?id={{$company4->id}}" class="form_update" method="post">
+                    <input type="button" class="update_close" id="update_close_btn_{{$item->id}}" value="×">
+                    <form action="/update?id={{$item->id}}" class="form_update" method="post">
                       @csrf
                       <table>
                         @error('company')
@@ -483,7 +490,7 @@
                         <tr>
                           <th>会社名<span class="required">*</span></th>
                           <td>
-                            <input type="text" name="company" value="{{$company4->company}}">
+                            <input type="text" name="company" value="{{$item->company}}">
                           </td>
                         </tr>
                         @error('name')
@@ -495,7 +502,7 @@
                         <tr>
                           <th>代表者名</th>
                           <td>
-                            <input type="text" name="name" value="{{$company4->name}}">
+                            <input type="text" name="name" value="{{$item->name}}">
                           </td>
                         </tr>
                         @error('tel')
@@ -507,7 +514,7 @@
                         <tr>
                           <th>電話番号</th>
                           <td>
-                            <input type="text" name="tel" value="{{$company4->tel}}">
+                            <input type="text" name="tel" value="{{$item->tel}}">
                           </td>
                         </tr>
                         @error('email')
@@ -519,7 +526,7 @@
                         <tr>
                           <th>メールアドレス</th>
                           <td>
-                            <input type="text" name="email" value="{{$company4->email}}">
+                            <input type="text" name="email" value="{{$item->email}}">
                           </td>
                         </tr>
                         <tr>
@@ -549,7 +556,7 @@
                           <input type="submit" class="update_btn" id="updateBtn" value="更新">
                     </form>
                     <br>
-                        <form action="/delete?id={{$company4->id}}" method="post" class="form_delete">
+                        <form action="/delete?id={{$item->id}}" method="post" class="form_delete">
                           @csrf
                           <input type="submit" class="delete_btn" value="削除">
                         </form>
@@ -560,38 +567,40 @@
             </td>
           </tr>
           <script>
-            const open_update_{{$company4->id}} = document.getElementById('open_update_{{$company4->id}}');
-            const close_update_{{$company4->id}} = document.getElementById('update_close_btn_{{$company4->id}}');
-            const modal2_{{$company4->id}} = document.getElementById('modal2_{{$company4->id}}');
-            open_update_{{$company4->id}}.addEventListener('click', () => {
-              modal2_{{$company4->id}}.style.display = 'block';
+            const open_update_{{$item->id}} = document.getElementById('open_update_{{$item->id}}');
+            const close_update_{{$item->id}} = document.getElementById('update_close_btn_{{$item->id}}');
+            const modal2_{{$item->id}} = document.getElementById('modal2_{{$item->id}}');
+            open_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'block';
             })
-            close_update_{{$company4->id}}.addEventListener('click', () => {
-              modal2_{{$company4->id}}.style.display = 'none';
+            close_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'none';
             })
             window.addEventListener('click', (e) => {
-              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$company4->id}}") {
-                modal2_{{$company4->id}}.style.display = 'none';
+              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$item->id}}") {
+                modal2_{{$item->id}}.style.display = 'none';
               }
             });
           </script>
           @endforeach
+          @endif
         </table>
       </div>
       <!-- ステータス5 -->
       <div class="box5_table">
         <table class="tables_table">
-          @foreach($companies5 as $company5)
+          @if(@isset($items5))
+          @foreach($items5 as $item)
           <tr>
             <td class="tables_maintd">
-              <p id="open_update_{{$company5->id}}" class="open_update">
-                {{$company5->company}}
+              <p id="open_update_{{$item->id}}" class="open_update">
+                {{$item->company}}
               </p>
-              <div id="modal2_{{$company5->id}}" class="modal2">
+              <div id="modal2_{{$item->id}}" class="modal2">
                 <div class="modal__content2">
                   <div class="modal__content-inner2">
-                    <input type="button" class="update_close" id="update_close_btn_{{$company5->id}}" value="×">
-                    <form action="/update?id={{$company5->id}}" class="form_update" method="post">
+                    <input type="button" class="update_close" id="update_close_btn_{{$item->id}}" value="×">
+                    <form action="/update?id={{$item->id}}" class="form_update" method="post">
                       @csrf
                       <table>
                         @error('company')
@@ -603,7 +612,7 @@
                         <tr>
                           <th>会社名<span class="required">*</span></th>
                           <td>
-                            <input type="text" name="company" value="{{$company5->company}}">
+                            <input type="text" name="company" value="{{$item->company}}">
                           </td>
                         </tr>
                         @error('name')
@@ -615,7 +624,7 @@
                         <tr>
                           <th>代表者名</th>
                           <td>
-                            <input type="text" name="name" value="{{$company5->name}}">
+                            <input type="text" name="name" value="{{$item->name}}">
                           </td>
                         </tr>
                         @error('tel')
@@ -627,7 +636,7 @@
                         <tr>
                           <th>電話番号</th>
                           <td>
-                            <input type="text" name="tel" value="{{$company5->tel}}">
+                            <input type="text" name="tel" value="{{$item->tel}}">
                           </td>
                         </tr>
                         @error('email')
@@ -639,7 +648,7 @@
                         <tr>
                           <th>メールアドレス</th>
                           <td>
-                            <input type="text" name="email" value="{{$company5->email}}">
+                            <input type="text" name="email" value="{{$item->email}}">
                           </td>
                         </tr>
                         <tr>
@@ -669,7 +678,7 @@
                           <input type="submit" class="update_btn" id="updateBtn" value="更新">
                     </form>
                     <br>
-                        <form action="/delete?id={{$company5->id}}" method="post" class="form_delete">
+                        <form action="/delete?id={{$item->id}}" method="post" class="form_delete">
                           @csrf
                           <input type="submit" class="delete_btn" value="削除">
                         </form>
@@ -680,30 +689,31 @@
             </td>
           </tr>
           <script>
-            const open_update_{{$company5->id}} = document.getElementById('open_update_{{$company5->id}}');
-            const close_update_{{$company5->id}} = document.getElementById('update_close_btn_{{$company5->id}}');
-            const modal2_{{$company5->id}} = document.getElementById('modal2_{{$company5->id}}');
-            open_update_{{$company5->id}}.addEventListener('click', () => {
-              modal2_{{$company5->id}}.style.display = 'block';
+            const open_update_{{$item->id}} = document.getElementById('open_update_{{$item->id}}');
+            const close_update_{{$item->id}} = document.getElementById('update_close_btn_{{$item->id}}');
+            const modal2_{{$item->id}} = document.getElementById('modal2_{{$item->id}}');
+            open_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'block';
             })
-            close_update_{{$company5->id}}.addEventListener('click', () => {
-              modal2_{{$company5->id}}.style.display = 'none';
+            close_update_{{$item->id}}.addEventListener('click', () => {
+              modal2_{{$item->id}}.style.display = 'none';
             })
             window.addEventListener('click', (e) => {
-              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$company5->id}}") {
-                modal2_{{$company5->id}}.style.display = 'none';
+              if (!e.target.closest('.modal__content-inner2') && e.target.id !== "open_update_{{$item->id}}") {
+                modal2_{{$item->id}}.style.display = 'none';
               }
             });
           </script>
           @endforeach
+          @endif
         </table>
       </div>
     </div>
   </main>
   <!-- アラート -->
-  <script>
-    @if(count($errors) > 0)
-    alert("入力が正しくありません。")
+    <script>
+    @if (count($errors) >0)
+        alert("入力が正しくありません。")
     @endif
   </script>
   <script src="/js/main.js"></script>

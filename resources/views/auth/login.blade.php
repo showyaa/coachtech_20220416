@@ -9,6 +9,7 @@
                 h1 {
                     font-size: 50px;
                 }
+
                 p {
                     text-align: center;
                     font-size: 20px;
@@ -26,7 +27,7 @@
             @csrf
 
             <!-- Email Address -->
-            <div>
+            <div class="email_space">
                 <x-label for="email" :value="__('メールアドレス')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
@@ -56,6 +57,19 @@
 
                 <x-button class="ml-3">
                     {{ __('ログイン') }}
+                    <style>
+                        .ml-3 {
+                            background-color: white;
+                            color: rgb(22, 166, 166);
+                            border: 2px solid rgb(22, 166, 166);
+                            font-weight: bolder;
+                        }
+
+                        .ml-3:hover {
+                            background-color: rgb(22, 166, 166);
+                            color: white;
+                        }
+                    </style>
                 </x-button>
             </div>
         </form>

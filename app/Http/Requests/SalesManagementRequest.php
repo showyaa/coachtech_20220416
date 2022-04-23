@@ -25,19 +25,22 @@ class SalesManagementRequest extends FormRequest
     {
         return [
             'company' => 'required|max:30',
-            'name' => 'max:20',
-            'tel' => 'numeric|nullable',
+            'name' => 'max:20|nullable',
+            'tel' => 'numeric|digits_between:8,11|nullable',
             'email' => 'email|nullable',
         ];
     }
     public function messages()
     {
         return [
-            'company.required' => '会社名を入力してください',
-            'name.max' => '20文字以内で入力してください',
+            'company.required' => '企業名を入力してください',
+            'company.max' => '企業名は30文字以内で入力してください',
+            'name.max' => '名前は20文字以内で入力してください',
             'tel.numeric' => '電話番号は数値で入力してください',
-            'tel.max' => '電話番号は11桁以内で入力してください',
-            'email.email' => 'メールアドレスの形式で入力してください'
+            'tel.digits_between' => '電話番号の桁数が正しくありません',
+            'email.email' => 'メールアドレスの形式で入力してください',
+            'setting_status.required' => 'ステータス名を入力してください',
+            'setting_status.max' => 'ステータス名は10文字以内で入力してください',
         ];
     }
 }
