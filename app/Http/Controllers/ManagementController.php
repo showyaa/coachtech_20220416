@@ -78,15 +78,22 @@ class ManagementController extends Controller
     public function setting()
     {
         $statuses = Status::all();
+        $customers = Customer::all();
+        $param = [
+            'statuses' => $statuses,
+            'customers' => $customers,
+        ];
 
-        return view('setting', ['statuses' => $statuses]);
+        return view('setting', $param);
     }
 
     public function status_update(StatusRequest $request)
     {
-        $form = $request->all();
-        unset($form['_token']);
-        Status::where('id', $request->id)->update($form);
+        Status::where('id', '1')->update(['status'=>$request->status1]);
+        Status::where('id', '2')->update(['status'=>$request->status2]);
+        Status::where('id', '3')->update(['status'=>$request->status3]);
+        Status::where('id', '4')->update(['status'=>$request->status4]);
+        Status::where('id', '5')->update(['status'=>$request->status5]);
 
         return redirect('/setting');
     }

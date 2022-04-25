@@ -16,21 +16,24 @@ use Illuminate\Auth\Events\Logout;
 |
 */
 
-Route::get('/home', [ManagementController::class, 'customer']);
-Route::get('/home', [ManagementController::class, 'index']);
+// ホーム
+Route::get('/home', [ManagementController::class, 'index'])->middleware('auth');
 
-Route::get('/find', [ManagementController::class, 'find']);
+// 検索
+Route::get('/find', [ManagementController::class, 'find'])->middleware('auth');
 Route::post('/find', [ManagementController::class, 'search']);
 
-Route::get('/setting', [ManagementController::class, 'setting'])->name('setting');
+// 設定
+Route::get('/setting', [ManagementController::class, 'setting'])->name('setting')->middleware('auth');
 Route::post('/setting', [ManagementController::class, 'status_update']);
 
+// 追加・更新・削除
 Route::post('/create', [ManagementController::class, 'create'])->name('customer.create');
 Route::post('/update', [ManagementController::class, 'update']);
 Route::post('/delete', [ManagementController::class, 'delete']);
 
 
-
+// ログアウト
 Route::get('/logout', [LogOutController::class, 'logout']);
 
 

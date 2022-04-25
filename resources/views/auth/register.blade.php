@@ -13,6 +13,7 @@
                     font-size: 20px;
                 }
             </style>
+            <title>SalesManagement -登録-</title>
         </x-slot>
 
         <!-- Validation Errors -->

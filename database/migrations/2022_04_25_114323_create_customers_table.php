@@ -17,7 +17,7 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->integer('status_id');
             $table->string('company');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->integer('tel')->nullable();
             $table->string('email')->nullable();
             $table->timestamps();

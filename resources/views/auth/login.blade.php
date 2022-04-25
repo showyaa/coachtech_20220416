@@ -15,6 +15,7 @@
                     font-size: 20px;
                 }
             </style>
+            <title>SalesManagement -ログイン-</title>
         </x-slot>
 
         <!-- Session Status -->

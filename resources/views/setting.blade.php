@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SalesManagement</title>
+  <title>SalesManagement -ステータス設定-</title>
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/home.css">
 </head>
@@ -25,28 +25,55 @@
     <div class="setting_content">
       <h3>セールスステータス設定</h3>
       <div class="setting_table">
-        <table>
-          <tr>
-            <th>ステータス1</th>
-            <th>ステータス2</th>
-            <th>ステータス3</th>
-            <th>ステータス4</th>
-            <th>ステータス5</th>
-          </tr>
-          <tr>
-            @foreach($statuses as $status)
-            <form action="/setting?id={{$status->id}}" class="status_update" name="setting_form{{$status->id}}" method="post" class="setting_update">
-              @csrf
+        <form action="/setting" class="status_update" name="setting_form" method="post" class="setting_update">
+          @csrf
+          <table>
+            <tr class="status_tr">
+              <th>ステータス1</th>
+              <th>ステータス2</th>
+              <th>ステータス3</th>
+              <th>ステータス4</th>
+              <th>ステータス5</th>
+            </tr>
+            <tr>
+              @foreach($statuses as $status)
               <td>
-                <input type="text" name="status" value="{{$status->status}}">
-                <div class="setting_update_btn_parent">
-                  <input type="submit" class="setting_update_btn" value="更新">
-                </div>
+                <input type="text" name="status{{$status->id}}" value="{{$status->status}}">
               </td>
-            </form>
-            @endforeach
-          </tr>
-        </table>
+              @endforeach
+            </tr>
+            <tr class="error_tr">
+              <td>
+                @error('status1')
+                {{$message}}
+                @enderror
+              </td>
+              <td>
+                @error('status2')
+                {{$message}}
+                @enderror
+              </td>
+              <td>
+                @error('status3')
+                {{$message}}
+                @enderror
+              </td>
+              <td>
+                @error('status4')
+                {{$message}}
+                @enderror
+              </td>
+              <td>
+                @error('status5')
+                {{$message}}
+                @enderror
+              </td>
+            </tr>
+          </table>
+          <div class="setting_update_btn_parent">
+            <input type="submit" class="setting_update_btn" value="更新">
+          </div>
+        </form>
       </div>
     </div>
     <!-- モーダル1・追加 -->
