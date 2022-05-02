@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Status;
 use App\Models\Customer;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\SalesManagementRequest;
 use App\Http\Requests\StatusRequest;
@@ -14,6 +16,7 @@ class ManagementController extends Controller
     {
         $statuses = Status::all();
         $customers = Customer::all();
+        $users = Auth::user();
         $status_id1 = Customer::where('status_id', '1')->get();
         $status_id2 = Customer::where('status_id', '2')->get();
         $status_id3 = Customer::where('status_id', '3')->get();
@@ -24,6 +27,7 @@ class ManagementController extends Controller
             'input' => '',
             'statuses' => $statuses,
             'customers' => $customers,
+            'users' => $users,
             'companies1' => $status_id1,
             'companies2' => $status_id2,
             'companies3' => $status_id3,

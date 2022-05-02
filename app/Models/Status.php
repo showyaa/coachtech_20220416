@@ -13,7 +13,7 @@ class Status extends Model
         'status'
     ];
 
-    public function costomers()
+    public function customers()
     {
         return $this->hasMany('App\Models\Customer');
     }

@@ -96,6 +96,7 @@
                 </td>
               </tr>
             </table>
+            <input type="hidden" name="user_id" value="{{$users->id}}">
             <input type="submit" class="create_btn" id="createBtn" value="追加">
           </form>
         </div>
