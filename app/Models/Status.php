@@ -17,4 +17,9 @@ class Status extends Model
     {
         return $this->hasMany('App\Models\Customer');
     }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

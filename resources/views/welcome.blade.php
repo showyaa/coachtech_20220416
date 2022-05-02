@@ -410,7 +410,7 @@
         <div class="login_register">
             <h1>SalesManagement</h1>
             @auth
-            <a href="{{ url('/home') }}" class="home_btn">ホーム画面へ</a>
+            <a href="{{ url('/home/{user}') }}" class="home_btn">ホーム画面へ</a>
             @else
             <div class="login_btn">
                 <a href="{{ route('login') }}">ログイン</a>

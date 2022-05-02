@@ -12,16 +12,16 @@ use App\Http\Requests\StatusRequest;
 
 class ManagementController extends Controller
 {
-    public function index()
+    public function index(User $user)
     {
         $statuses = Status::all();
         $customers = Customer::all();
         $users = Auth::user();
-        $status_id1 = Customer::where('status_id', '1')->get();
-        $status_id2 = Customer::where('status_id', '2')->get();
-        $status_id3 = Customer::where('status_id', '3')->get();
-        $status_id4 = Customer::where('status_id', '4')->get();
-        $status_id5 = Customer::where('status_id', '5')->get();
+        $status_id1 = Customer::where('user_id', '$user->id')->where('status_id', '1')->get();
+        $status_id2 = Customer::where('user_id', '$user->id')->where('status_id', '2')->get();
+        $status_id3 = Customer::where('user_id', '$user->id')->where('status_id', '3')->get();
+        $status_id4 = Customer::where('user_id', '$user->id')->where('status_id', '4')->get();
+        $status_id5 = Customer::where('user_id', '$user->id')->where('status_id', '5')->get();
 
         $param = [
             'input' => '',
@@ -32,7 +32,8 @@ class ManagementController extends Controller
             'companies2' => $status_id2,
             'companies3' => $status_id3,
             'companies4' => $status_id4,
-            'companies5' => $status_id5
+            'companies5' => $status_id5,
+            'items' => $user,
         ];
 
         return view('home', $param);
@@ -125,5 +126,11 @@ class ManagementController extends Controller
     {
         Customer::find($request->id)->delete();
         return redirect('/home');
+    }
+
+
+    public function welcome(User $user)
+    {
+        
     }
 }

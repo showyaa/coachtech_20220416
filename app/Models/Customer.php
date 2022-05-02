@@ -9,16 +9,17 @@ class Customer extends Model
 {
     protected $fillable = [
         'status_id',
+        'user_id',
         'company',
         'name',
         'tel',
         'email',
     ];
+
     
     public function getCompany ()
     {
-        $txt =$this->company;
-        return $txt;
+        return $this->company;
     }
     use HasFactory;
 }
