@@ -104,7 +104,7 @@
     </div>
     <!-- メイン（グリッドレイアウト） -->
     <div class="tables">
-      <div class="box1"><p>{{$statuses[0]->status}}</p></div>
+      <div class="box1"><p>@if($statuses[0] != null){{$statuses[0]->status}}@endif</p></div>
       <div class="box2"><p>{{$statuses[1]->status}}</p></div>
       <div class="box3"><p>{{$statuses[2]->status}}</p></div>
       <div class="box4"><p>{{$statuses[3]->status}}</p></div>

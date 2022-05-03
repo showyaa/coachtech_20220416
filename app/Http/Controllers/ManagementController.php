@@ -12,16 +12,16 @@ use App\Http\Requests\StatusRequest;
 
 class ManagementController extends Controller
 {
-    public function index(User $user)
+    public function index()
     {
         $statuses = Status::all();
         $customers = Customer::all();
         $users = Auth::user();
-        $status_id1 = Customer::where('user_id', '$user->id')->where('status_id', '1')->get();
-        $status_id2 = Customer::where('user_id', '$user->id')->where('status_id', '2')->get();
-        $status_id3 = Customer::where('user_id', '$user->id')->where('status_id', '3')->get();
-        $status_id4 = Customer::where('user_id', '$user->id')->where('status_id', '4')->get();
-        $status_id5 = Customer::where('user_id', '$user->id')->where('status_id', '5')->get();
+        $status_id1 = Customer::where('user_id', $users->id)->where('status_id', '1')->get();
+        $status_id2 = Customer::where('user_id', $users->id)->where('status_id', '2')->get();
+        $status_id3 = Customer::where('user_id', $users->id)->where('status_id', '3')->get();
+        $status_id4 = Customer::where('user_id', $users->id)->where('status_id', '4')->get();
+        $status_id5 = Customer::where('user_id', $users->id)->where('status_id', '5')->get();
 
         $param = [
             'input' => '',
@@ -33,7 +33,6 @@ class ManagementController extends Controller
             'companies3' => $status_id3,
             'companies4' => $status_id4,
             'companies5' => $status_id5,
-            'items' => $user,
         ];
 
         return view('home', $param);
@@ -57,11 +56,12 @@ class ManagementController extends Controller
     public function search(Request $request)
     {
         $statuses = Status::all();
-        $items1 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '1')->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '1')->get();
-        $items2 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '2')->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '2')->get();
-        $items3 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '3')->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '3')->get();
-        $items4 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '4')->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '4')->get();
-        $items5 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '5')->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '5')->get();
+        $users = Auth::user();
+        $items1 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '1')->where('user_id', $users->id)->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '1')->where('user_id', $users->id)->get();
+        $items2 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '2')->where('user_id', $users->id)->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '2')->where('user_id', $users->id)->get();
+        $items3 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '3')->where('user_id', $users->id)->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '3')->where('user_id', $users->id)->get();
+        $items4 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '4')->where('user_id', $users->id)->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '4')->where('user_id', $users->id)->get();
+        $items5 = Customer::where('company', 'LIKE', "%{$request->search}%")->where('status_id', '5')->where('user_id', $users->id)->orWhere('name', 'LIKE', "%{$request->search}%")->where('status_id', '5')->where('user_id', $users->id)->get();
 
         $param = [
             'statuses' => $statuses,
