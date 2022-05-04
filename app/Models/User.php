@@ -47,4 +47,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Customer');
     }
 
+    public function statuses()
+    {
+        return $this->hasMany('App\Models\NewStatus');
+    }
+
 }

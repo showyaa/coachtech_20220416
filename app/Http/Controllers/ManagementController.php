@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Status;
 use App\Models\Customer;
 use App\Models\User;
+use App\Models\NewStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\SalesManagementRequest;
 use App\Http\Requests\StatusRequest;
+use App\Http\Requests\NewStatusRequest;
 
 class ManagementController extends Controller
 {
@@ -84,9 +86,15 @@ class ManagementController extends Controller
     {
         $statuses = Status::all();
         $customers = Customer::all();
+        $newstatuses = NewStatus::all();
+        $users = Auth::user();
+        $status = NewStatus::where('user_id', $users->id)->get();
         $param = [
             'statuses' => $statuses,
             'customers' => $customers,
+            'newstatuses' => $newstatuses,
+            'users' => $users,
+            'status' => $status,
         ];
 
         return view('setting', $param);
@@ -100,6 +108,15 @@ class ManagementController extends Controller
         Status::where('id', '4')->update(['status'=>$request->status4]);
         Status::where('id', '5')->update(['status'=>$request->status5]);
 
+        return redirect('/setting');
+    }
+
+    public function status_upsert(NewStatusRequest $request)
+    {
+        $form = $request->all();
+        unset($form['_token']);
+        $users = Auth::user();
+        NewStatus::updateOrCreate(['user_id' => $users->id], ['status1' => $request->status1, 'status2' => $request->status2, 'status3' => $request->status3, 'status4' => $request->status4, 'status5' => $request->status5]);
         return redirect('/setting');
     }
 

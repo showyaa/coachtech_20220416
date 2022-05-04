@@ -36,6 +36,9 @@ Route::post('/delete', [ManagementController::class, 'delete']);
 // ログアウト
 Route::get('/logout', [LogOutController::class, 'logout']);
 
+// ニューステータス
+Route::post('/newsetting', [ManagementController::class, 'status_upsert']);
+
 
 
 

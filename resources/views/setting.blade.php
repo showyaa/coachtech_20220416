@@ -150,6 +150,32 @@
         </div>
       </div>
     </div>
+    <div class="newstatus">
+      <form action="/newsetting" method="post">
+        @csrf
+        <input type="hidden" name="user_id" value="{{$users->id}}">
+        <table>
+          <tr>
+            <th>ステータス1</th>
+            <th>ステータス2</th>
+            <th>ステータス3</th>
+            <th>ステータス4</th>
+            <th>ステータス5</th>
+          </tr>
+          <tr>
+            <td><input type="text" name="status1" value="{{$status->status1}}"></td>
+            <td><input type="text" name="status2" value="{{$status->status2}}"></td>
+            <td><input type="text" name="status3" value="{{$status->status3}}"></td>
+            <td><input type="text" name="status4" value="{{$status->status4}}"></td>
+            <td><input type="text" name="status5" value="{{$status->status5}}"></td>
+          </tr>
+        </table>
+        <input type="submit" value="更新">
+      </form>
+    </div>
+    <div>
+      <p></p>
+    </div>
   </main>
   <!-- アラート -->
   <script>
