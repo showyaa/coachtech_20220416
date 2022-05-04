@@ -163,18 +163,24 @@
             <th>ステータス5</th>
           </tr>
           <tr>
-            <td><input type="text" name="status1" value="{{$status->status1}}"></td>
-            <td><input type="text" name="status2" value="{{$status->status2}}"></td>
-            <td><input type="text" name="status3" value="{{$status->status3}}"></td>
-            <td><input type="text" name="status4" value="{{$status->status4}}"></td>
-            <td><input type="text" name="status5" value="{{$status->status5}}"></td>
+            <td><input type="text" name="status1" @if($newstatus !=null)value="{{$newstatus->status1}}" @endif></td>
+            <td><input type="text" name="status2" @if($newstatus !=null)value="{{$newstatus->status2}}" @endif></td>
+            <td><input type="text" name="status3" @if($newstatus !=null)value="{{$newstatus->status3}}" @endif></td>
+            <td><input type="text" name="status4" @if($newstatus !=null)value="{{$newstatus->status4}}" @endif></td>
+            <td><input type="text" name="status5" @if($newstatus !=null)value="{{$newstatus->status5}}" @endif></td>
           </tr>
         </table>
         <input type="submit" value="更新">
       </form>
     </div>
     <div>
-      <p></p>
+      <select name="" id="">
+        <option value="1">{{$newstatus->status1}}</option>
+        <option value="2">{{$newstatus->status2}}</option>
+        <option value="3">{{$newstatus->status3}}</option>
+        <option value="4">{{$newstatus->status4}}</option>
+        <option value="5">{{$newstatus->status5}}</option>
+      </select>
     </div>
   </main>
   <!-- アラート -->

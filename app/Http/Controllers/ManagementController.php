@@ -88,13 +88,13 @@ class ManagementController extends Controller
         $customers = Customer::all();
         $newstatuses = NewStatus::all();
         $users = Auth::user();
-        $status = NewStatus::where('user_id', $users->id)->get();
+        $newstatus = NewStatus::where('user_id', $users->id)->first();
         $param = [
             'statuses' => $statuses,
             'customers' => $customers,
             'newstatuses' => $newstatuses,
             'users' => $users,
-            'status' => $status,
+            'newstatus' => $newstatus,
         ];
 
         return view('setting', $param);
